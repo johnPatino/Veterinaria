@@ -5,8 +5,12 @@
  */
 package vista;
 import contrloador.GestionClientes;
+import contrloador.GestionProductos;
 import contrloador.GestionTelefonos;
+import contrloador.TablaProducto;
+import javax.swing.table.TableModel;
 import modelo.Cliente;
+import modelo.Producto;
 import modelo.Telefono;
 import vista.Login;
 import rojerusan.RSPanelsSlider;
@@ -91,7 +95,7 @@ public class Ventana extends javax.swing.JFrame {
         jTextField22 = new javax.swing.JTextField();
         jTextField23 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        Tipo = new javax.swing.JComboBox<>();
+        Tipo = new javax.swing.JComboBox<String>();
         jLabel40 = new javax.swing.JLabel();
         pregistroclientes = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
@@ -105,7 +109,7 @@ public class Ventana extends javax.swing.JFrame {
         clicorreo = new javax.swing.JTextField();
         clicedula = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
-        cclitelefono = new javax.swing.JComboBox<>();
+        cclitelefono = new javax.swing.JComboBox<String>();
         jLabel39 = new javax.swing.JLabel();
         panelfactura = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -127,6 +131,26 @@ public class Ventana extends javax.swing.JFrame {
         jTextField13 = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        panelProductos = new javax.swing.JPanel();
+        idproductos = new javax.swing.JTextField();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        nombreptxt = new javax.swing.JTextField();
+        tipoProtxt = new javax.swing.JTextField();
+        nacionalidadtxt = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableProductos = new javax.swing.JTable();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        Stocktxt = new javax.swing.JTextField();
+        BorrarPro = new javax.swing.JButton();
+        ActualizarPro = new javax.swing.JButton();
+        BuscarPro = new javax.swing.JButton();
+        jLabel49 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -189,6 +213,11 @@ public class Ventana extends javax.swing.JFrame {
         jLabel7.setText("  INVENTARIO");
         jLabel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 5, true));
         jLabel7.setOpaque(true);
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
         jPanel2.add(jLabel7);
 
         jLabel41.setBackground(new java.awt.Color(204, 204, 204));
@@ -227,11 +256,11 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel9.setText("HISTORIA CLINICA :");
         panelturno.add(jLabel9);
-        jLabel9.setBounds(40, 100, 110, 15);
+        jLabel9.setBounds(40, 100, 110, 16);
 
         jLabel10.setText("RAZA :");
         panelturno.add(jLabel10);
-        jLabel10.setBounds(40, 250, 90, 15);
+        jLabel10.setBounds(40, 250, 90, 16);
 
         jLabel11.setText("NOMBRE - APELLIDOS");
         panelturno.add(jLabel11);
@@ -243,25 +272,25 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel13.setText("CEDULA:");
         panelturno.add(jLabel13);
-        jLabel13.setBounds(40, 70, 90, 15);
+        jLabel13.setBounds(40, 70, 90, 16);
 
         jCheckBox1.setText("DOMESTICO");
         panelturno.add(jCheckBox1);
-        jCheckBox1.setBounds(30, 300, 84, 23);
+        jCheckBox1.setBounds(30, 300, 99, 25);
 
         jCheckBox2.setText("SALVAJE");
         panelturno.add(jCheckBox2);
-        jCheckBox2.setBounds(30, 330, 80, 23);
+        jCheckBox2.setBounds(30, 330, 80, 25);
 
         jLabel14.setText("TURNO # :");
         panelturno.add(jLabel14);
-        jLabel14.setBounds(30, 430, 60, 15);
+        jLabel14.setBounds(30, 430, 60, 16);
 
         jRadioButton1.setText("EMERGENCIA");
         panelturno.add(jRadioButton1);
-        jRadioButton1.setBounds(30, 460, 90, 23);
+        jRadioButton1.setBounds(30, 460, 103, 25);
         panelturno.add(jTextField1);
-        jTextField1.setBounds(90, 430, 70, 19);
+        jTextField1.setBounds(90, 430, 70, 22);
 
         jButton1.setText("CREAR TURNO");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -274,30 +303,28 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel15.setText("ENFERMEDAD :");
         panelturno.add(jLabel15);
-        jLabel15.setBounds(320, 300, 90, 15);
+        jLabel15.setBounds(320, 300, 90, 16);
 
         jLabel16.setText("DESCRIPCION :");
         panelturno.add(jLabel16);
-        jLabel16.setBounds(320, 340, 80, 15);
+        jLabel16.setBounds(320, 340, 80, 16);
         panelturno.add(jTextField2);
-        jTextField2.setBounds(420, 300, 90, 19);
+        jTextField2.setBounds(420, 300, 90, 22);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         panelturno.add(jScrollPane1);
-        jScrollPane1.setBounds(410, 340, 163, 150);
-
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBounds(410, 340, 166, 150);
         panelturno.add(jTextField3);
-        jTextField3.setBounds(150, 60, 100, 19);
+        jTextField3.setBounds(150, 60, 100, 22);
         panelturno.add(jTextField4);
-        jTextField4.setBounds(160, 100, 100, 19);
+        jTextField4.setBounds(160, 100, 100, 22);
         panelturno.add(jTextField5);
-        jTextField5.setBounds(160, 140, 100, 19);
+        jTextField5.setBounds(160, 140, 100, 22);
         panelturno.add(jTextField6);
-        jTextField6.setBounds(330, 180, 160, 19);
+        jTextField6.setBounds(330, 180, 160, 22);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/48414530_1903087569808413_8354147755102306304_n (1).jpg"))); // NOI18N
         panelturno.add(jLabel8);
@@ -310,7 +337,6 @@ public class Ventana extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(51, 51, 255));
         jButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("PERSONAL");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,7 +348,6 @@ public class Ventana extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(51, 51, 255));
         jButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("CLIENTES ");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -401,23 +426,23 @@ public class Ventana extends javax.swing.JFrame {
         pregistropersonal.add(jLabel32);
         jLabel32.setBounds(300, 140, 70, 16);
         pregistropersonal.add(jTextField15);
-        jTextField15.setBounds(150, 70, 120, 19);
+        jTextField15.setBounds(150, 70, 120, 22);
         pregistropersonal.add(jTextField16);
-        jTextField16.setBounds(150, 210, 110, 19);
+        jTextField16.setBounds(150, 210, 110, 22);
         pregistropersonal.add(jTextField17);
-        jTextField17.setBounds(150, 280, 120, 19);
+        jTextField17.setBounds(150, 280, 120, 22);
         pregistropersonal.add(jTextField18);
-        jTextField18.setBounds(150, 360, 120, 19);
+        jTextField18.setBounds(150, 360, 120, 22);
         pregistropersonal.add(jTextField19);
-        jTextField19.setBounds(410, 70, 130, 19);
+        jTextField19.setBounds(410, 70, 130, 22);
         pregistropersonal.add(jTextField20);
-        jTextField20.setBounds(410, 140, 150, 19);
+        jTextField20.setBounds(410, 140, 150, 22);
         pregistropersonal.add(jTextField21);
-        jTextField21.setBounds(410, 210, 150, 19);
+        jTextField21.setBounds(410, 210, 150, 22);
         pregistropersonal.add(jTextField22);
-        jTextField22.setBounds(410, 280, 140, 19);
+        jTextField22.setBounds(410, 280, 140, 22);
         pregistropersonal.add(jTextField23);
-        jTextField23.setBounds(150, 150, 120, 19);
+        jTextField23.setBounds(150, 150, 120, 22);
 
         jButton5.setText("REGISTRAR");
         pregistropersonal.add(jButton5);
@@ -425,7 +450,7 @@ public class Ventana extends javax.swing.JFrame {
 
         Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TIPO", "MOVIL", "CONVENCIONAL" }));
         pregistropersonal.add(Tipo);
-        Tipo.setBounds(150, 400, 120, 24);
+        Tipo.setBounds(150, 400, 120, 22);
 
         jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/50026326_523910904786569_5848442999729553408_n.jpg"))); // NOI18N
         pregistropersonal.add(jLabel40);
@@ -438,23 +463,23 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel34.setText("NOMBRE :");
         pregistroclientes.add(jLabel34);
-        jLabel34.setBounds(80, 130, 49, 15);
+        jLabel34.setBounds(80, 130, 58, 16);
 
         jLabel35.setText("DIRECCION :");
         pregistroclientes.add(jLabel35);
-        jLabel35.setBounds(80, 190, 59, 15);
+        jLabel35.setBounds(80, 190, 73, 16);
 
         jLabel36.setText("TELEFONO :");
         pregistroclientes.add(jLabel36);
-        jLabel36.setBounds(80, 250, 59, 15);
+        jLabel36.setBounds(80, 250, 70, 16);
 
         jLabel37.setText("EMAIL :");
         pregistroclientes.add(jLabel37);
-        jLabel37.setBounds(80, 340, 36, 15);
+        jLabel37.setBounds(80, 340, 44, 16);
 
         jLabel38.setText("CEDULA :");
         pregistroclientes.add(jLabel38);
-        jLabel38.setBounds(80, 50, 60, 15);
+        jLabel38.setBounds(80, 50, 60, 16);
         pregistroclientes.add(clinombre);
         clinombre.setBounds(150, 130, 120, 30);
         pregistroclientes.add(clidireccion);
@@ -463,6 +488,12 @@ public class Ventana extends javax.swing.JFrame {
         clitelefono.setBounds(160, 250, 120, 30);
         pregistroclientes.add(clicorreo);
         clicorreo.setBounds(150, 320, 120, 30);
+
+        clicedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clicedulaActionPerformed(evt);
+            }
+        });
         pregistroclientes.add(clicedula);
         clicedula.setBounds(140, 50, 120, 30);
 
@@ -477,7 +508,7 @@ public class Ventana extends javax.swing.JFrame {
 
         cclitelefono.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TIPO", "M","C" }));
         pregistroclientes.add(cclitelefono);
-        cclitelefono.setBounds(340, 250, 150, 24);
+        cclitelefono.setBounds(340, 250, 150, 22);
 
         jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/48413169_311199442828618_5704288482638168064_n.png"))); // NOI18N
         pregistroclientes.add(jLabel39);
@@ -490,39 +521,39 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel4.setText("FECHA :");
         panelfactura.add(jLabel4);
-        jLabel4.setBounds(40, 30, 50, 15);
+        jLabel4.setBounds(40, 30, 50, 16);
 
         jLabel17.setText("DIRECCION :");
         panelfactura.add(jLabel17);
-        jLabel17.setBounds(40, 100, 70, 15);
+        jLabel17.setBounds(40, 100, 70, 16);
 
         jLabel18.setText("NOMBRE :");
         panelfactura.add(jLabel18);
-        jLabel18.setBounds(40, 60, 50, 15);
+        jLabel18.setBounds(40, 60, 50, 16);
 
         jLabel19.setText("EMAIL :");
         panelfactura.add(jLabel19);
-        jLabel19.setBounds(40, 140, 36, 15);
+        jLabel19.setBounds(40, 140, 44, 16);
 
         jLabel20.setText("DI :");
         panelfactura.add(jLabel20);
-        jLabel20.setBounds(300, 130, 34, 15);
+        jLabel20.setBounds(300, 130, 34, 16);
 
         jLabel21.setText("TELEFONO :");
         panelfactura.add(jLabel21);
-        jLabel21.setBounds(300, 100, 60, 15);
+        jLabel21.setBounds(300, 100, 60, 16);
         panelfactura.add(jTextField7);
-        jTextField7.setBounds(120, 60, 90, 19);
+        jTextField7.setBounds(120, 60, 90, 22);
         panelfactura.add(jTextField8);
-        jTextField8.setBounds(120, 100, 90, 19);
+        jTextField8.setBounds(120, 100, 90, 22);
         panelfactura.add(jTextField9);
-        jTextField9.setBounds(110, 140, 100, 19);
+        jTextField9.setBounds(110, 140, 100, 22);
         panelfactura.add(jTextField10);
-        jTextField10.setBounds(370, 100, 110, 19);
+        jTextField10.setBounds(370, 100, 110, 22);
         panelfactura.add(jTextField11);
-        jTextField11.setBounds(350, 130, 130, 19);
+        jTextField11.setBounds(350, 130, 130, 22);
         panelfactura.add(jTextField12);
-        jTextField12.setBounds(120, 30, 90, 19);
+        jTextField12.setBounds(120, 30, 90, 22);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -540,25 +571,159 @@ public class Ventana extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         panelfactura.add(jScrollPane2);
-        jScrollPane2.setBounds(70, 210, 453, 120);
+        jScrollPane2.setBounds(70, 210, 452, 120);
 
         jLabel22.setText("A PAGAR :");
         panelfactura.add(jLabel22);
-        jLabel22.setBounds(390, 370, 60, 15);
+        jLabel22.setBounds(390, 370, 60, 16);
 
         jLabel23.setText("VALOR CONSULTA :");
         panelfactura.add(jLabel23);
-        jLabel23.setBounds(390, 400, 110, 15);
+        jLabel23.setBounds(390, 400, 110, 16);
         panelfactura.add(jTextField13);
-        jTextField13.setBounds(460, 370, 90, 19);
+        jTextField13.setBounds(460, 370, 90, 22);
         panelfactura.add(jTextField14);
-        jTextField14.setBounds(500, 400, 90, 19);
+        jTextField14.setBounds(500, 400, 90, 22);
 
         jButton2.setText("CONFIRMAR");
         panelfactura.add(jButton2);
         jButton2.setBounds(420, 480, 100, 25);
 
         Contenedor.add(panelfactura, "card4");
+
+        panelProductos.setName("panelProductos"); // NOI18N
+        panelProductos.setLayout(null);
+
+        idproductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idtxt(evt);
+            }
+        });
+        panelProductos.add(idproductos);
+        idproductos.setBounds(270, 50, 70, 22);
+
+        jLabel43.setText("Nombre");
+        panelProductos.add(jLabel43);
+        jLabel43.setBounds(120, 100, 45, 16);
+
+        jLabel44.setText("Tipo");
+        panelProductos.add(jLabel44);
+        jLabel44.setBounds(120, 150, 30, 16);
+
+        jLabel45.setText("Nacionalidad");
+        panelProductos.add(jLabel45);
+        jLabel45.setBounds(120, 210, 80, 20);
+
+        jLabel46.setText("Id");
+        panelProductos.add(jLabel46);
+        jLabel46.setBounds(120, 50, 80, 16);
+
+        nombreptxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreptxtActionPerformed(evt);
+            }
+        });
+        panelProductos.add(nombreptxt);
+        nombreptxt.setBounds(270, 90, 310, 30);
+
+        tipoProtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoProtxtActionPerformed(evt);
+            }
+        });
+        panelProductos.add(tipoProtxt);
+        tipoProtxt.setBounds(270, 140, 310, 30);
+
+        nacionalidadtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nacionalidadtxtActionPerformed(evt);
+            }
+        });
+        panelProductos.add(nacionalidadtxt);
+        nacionalidadtxt.setBounds(270, 200, 90, 30);
+
+        jTableProductos.setModel(new TablaProducto());
+        jTableProductos.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTableProductosAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane3.setViewportView(jTableProductos);
+
+        panelProductos.add(jScrollPane3);
+        jScrollPane3.setBounds(0, 310, 650, 150);
+
+        jButton7.setText("GUARDAR");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        panelProductos.add(jButton7);
+        jButton7.setBounds(400, 500, 89, 25);
+
+        jButton8.setText("MOSTRAR");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        panelProductos.add(jButton8);
+        jButton8.setBounds(510, 500, 100, 25);
+
+        jLabel47.setText("INGRSAR NUEVO PRODUCTO");
+        panelProductos.add(jLabel47);
+        jLabel47.setBounds(400, 10, 190, 70);
+
+        jLabel48.setText("Stock");
+        panelProductos.add(jLabel48);
+        jLabel48.setBounds(120, 260, 31, 16);
+
+        Stocktxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StocktxtActionPerformed(evt);
+            }
+        });
+        panelProductos.add(Stocktxt);
+        Stocktxt.setBounds(270, 260, 60, 22);
+
+        BorrarPro.setText("BORRAR");
+        BorrarPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarProActionPerformed(evt);
+            }
+        });
+        panelProductos.add(BorrarPro);
+        BorrarPro.setBounds(280, 500, 100, 25);
+
+        ActualizarPro.setText("ACTUALIZAR");
+        ActualizarPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarProActionPerformed(evt);
+            }
+        });
+        panelProductos.add(ActualizarPro);
+        ActualizarPro.setBounds(150, 500, 110, 25);
+
+        BuscarPro.setText("BUSCAR");
+        BuscarPro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarProActionPerformed(evt);
+            }
+        });
+        panelProductos.add(BuscarPro);
+        BuscarPro.setBounds(30, 500, 100, 25);
+
+        jLabel49.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Documents\\NetBeansProjects\\Proyecto_Veterinaria -\\src\\img\\50286224_798665033800581_1599931478752362496_n.jpg")); // NOI18N
+        jLabel49.setText("jLabel49");
+        panelProductos.add(jLabel49);
+        jLabel49.setBounds(0, -100, 650, 650);
+
+        Contenedor.add(panelProductos, "card8");
 
         jPanel1.add(Contenedor);
         Contenedor.setBounds(110, 0, 650, 550);
@@ -615,7 +780,7 @@ public class Ventana extends javax.swing.JFrame {
         tel.setEmp_id(1);
         tel.setNumero(clitelefono.getText());
         tel.setTipo("m");
-        /*gt.InsertTelefono(tel);
+        //gt.InsertTelefono(tel);
         
         /*Cliente cli=new Cliente();
         cli.setId(6);
@@ -627,13 +792,84 @@ public class Ventana extends javax.swing.JFrame {
         gc.InsertCliente(cli);*/
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void idtxt(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idtxt
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idtxt
+
+    private void nombreptxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreptxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreptxtActionPerformed
+
+    private void tipoProtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoProtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoProtxtActionPerformed
+
+    private void nacionalidadtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nacionalidadtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nacionalidadtxtActionPerformed
+
+    private void clicedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clicedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clicedulaActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+      Producto pro = new Producto();
+      pro.setPro_id(Integer.parseInt(idproductos.getText()));
+      pro.setNombre(nombreptxt.getText());
+      pro.setTipo(tipoProtxt.getText());
+      pro.setNacionalidad(nacionalidadtxt.getText());
+      pro.setStock(Integer.parseInt(Stocktxt.getText()));
+      
+      GestionProductos gp=new GestionProductos();
+      gp.InsertProductos(pro);
+      
+      idproductos.setText("");
+      nombreptxt.setText("");
+      tipoProtxt.setText("");
+      nacionalidadtxt.setText("");
+      Stocktxt.setText("");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void StocktxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StocktxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StocktxtActionPerformed
+
+    private void jTableProductosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTableProductosAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableProductosAncestorAdded
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        Contenedor.setPanelSlider(20,panelProductos, RSPanelsSlider.DIRECT.UP);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        jTableProductos.setModel(new TablaProducto(new GestionProductos().getListProducto()));
+        System.out.println(""+new GestionProductos().getListProducto().get(0).getPro_id());
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void BorrarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BorrarProActionPerformed
+
+    private void BuscarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuscarProActionPerformed
+
+    private void ActualizarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarProActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ActualizarProActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ActualizarPro;
+    private javax.swing.JButton BorrarPro;
+    private javax.swing.JButton BuscarPro;
     private rojerusan.RSPanelsSlider Contenedor;
+    private javax.swing.JTextField Stocktxt;
     private javax.swing.JComboBox<String> Tipo;
     private javax.swing.JComboBox<String> cclitelefono;
     private javax.swing.JTextField clicedula;
@@ -641,12 +877,15 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextField clidireccion;
     private javax.swing.JTextField clinombre;
     private javax.swing.JTextField clitelefono;
+    private javax.swing.JTextField idproductos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
@@ -686,6 +925,13 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -696,7 +942,9 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableProductos;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
@@ -721,11 +969,15 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField nacionalidadtxt;
+    private javax.swing.JTextField nombreptxt;
+    private javax.swing.JPanel panelProductos;
     private javax.swing.JPanel panelfactura;
     private javax.swing.JPanel panelfondo;
     private javax.swing.JPanel panelregistro;
     private javax.swing.JPanel panelturno;
     private javax.swing.JPanel pregistroclientes;
     private javax.swing.JPanel pregistropersonal;
+    private javax.swing.JTextField tipoProtxt;
     // End of variables declaration//GEN-END:variables
 }
