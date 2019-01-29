@@ -12,17 +12,17 @@ package contrloador;
 
 public class Gestion {
     
-    public String roll;
+    public String rol;
     
-    public void Roll(String roll){
-    this.roll=roll;
+    public void Roll(String rol){
+    this.rol=rol;
         
         
     }
     
     public String Rol(){
         
-    return roll;
+    return rol;
     }
     
 }
