@@ -10,13 +10,13 @@ package modelo;
  * @author Bernardo
  */
 public class Producto {
-    private String nombre,fecha_caducidad;
+    private String nombre,nacionalidad;
     private String tipo;
-    private int stock;
+    private int stock,pro_id;
 
     public Producto(String nombre, String fecha_caducidad, String tipo, int stock) {
         this.nombre = nombre;
-        this.fecha_caducidad = fecha_caducidad;
+        this.nacionalidad = nacionalidad;
         this.tipo = tipo;
         this.stock = stock;
     }
@@ -30,15 +30,6 @@ public class Producto {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getFecha_caducidad() {
-        return fecha_caducidad;
-    }
-
-    public void setFecha_caducidad(String fecha_caducidad) {
-        this.fecha_caducidad = fecha_caducidad;
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -53,6 +44,22 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public int getPro_id() {
+        return pro_id;
+    }
+
+    public void setPro_id(int pro_id) {
+        this.pro_id = pro_id;
     }
     
     
