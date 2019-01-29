@@ -17,6 +17,9 @@ import modelo.Telefono;
  */
 public class GestionTelefonos {
     
- 
+ void probando(){
+     System.out.println("contrloador.GestionTelefonos.probando()");
+ }
+         
     
 }
