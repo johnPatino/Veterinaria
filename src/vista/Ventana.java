@@ -848,15 +848,33 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void BorrarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarProActionPerformed
-        // TODO add your handling code here:
+      GestionProductos gp =new GestionProductos();
+      gp.EliminarProducto(Integer.parseInt(idproductos.getText()));
+      
     }//GEN-LAST:event_BorrarProActionPerformed
 
     private void BuscarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarProActionPerformed
-        // TODO add your handling code here:
+      GestionProductos gp =new GestionProductos();
+      Producto pro = new GestionProductos().getBuscarPoducto(Integer.parseInt(idproductos.getText()));
+      idproductos.setText(String.valueOf(pro.getPro_id()));
+      nombreptxt.setText(pro.getNombre());
+      tipoProtxt.setText(pro.getTipo());
+      nacionalidadtxt.setText(pro.getNacionalidad());
+      Stocktxt.setText(String.valueOf(pro.getStock()));
+        
+         
+        
     }//GEN-LAST:event_BuscarProActionPerformed
 
     private void ActualizarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarProActionPerformed
-        // TODO add your handling code here:
+      GestionProductos gp =new GestionProductos();
+      Producto pro = new Producto();
+      pro.setPro_id(Integer.parseInt(idproductos.getText()));
+      pro.setNombre(nombreptxt.getText());
+      pro.setTipo(tipoProtxt.getText());
+      pro.setNacionalidad(nacionalidadtxt.getText());
+      pro.setStock(Integer.parseInt(Stocktxt.getText()));
+      gp.ActualizarProducto(pro);
     }//GEN-LAST:event_ActualizarProActionPerformed
 
     /**
