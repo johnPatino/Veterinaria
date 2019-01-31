@@ -5,12 +5,12 @@
  */
 package vista;
 import contrloador.GestionClientes;
-import contrloador.GestionProductos;
+import contrloador.GestionMascotas;
 import contrloador.GestionTelefonos;
-import contrloador.TablaProducto;
-import javax.swing.table.TableModel;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Cliente;
-import modelo.Producto;
+import modelo.Mascota;
 import modelo.Telefono;
 import vista.Login;
 import rojerusan.RSPanelsSlider;
@@ -49,32 +49,22 @@ public class Ventana extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         panelturno = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jButton9 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         panelregistro = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
         pregistropersonal = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
@@ -95,7 +85,8 @@ public class Ventana extends javax.swing.JFrame {
         jTextField22 = new javax.swing.JTextField();
         jTextField23 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        Tipo = new javax.swing.JComboBox<String>();
+        Tipo = new javax.swing.JComboBox<>();
+        jButton8 = new javax.swing.JButton();
         jLabel40 = new javax.swing.JLabel();
         pregistroclientes = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
@@ -109,7 +100,11 @@ public class Ventana extends javax.swing.JFrame {
         clicorreo = new javax.swing.JTextField();
         clicedula = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
-        cclitelefono = new javax.swing.JComboBox<String>();
+        cclitelefono = new javax.swing.JComboBox<>();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        cliid = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         panelfactura = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -131,26 +126,7 @@ public class Ventana extends javax.swing.JFrame {
         jTextField13 = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        panelProductos = new javax.swing.JPanel();
-        idproductos = new javax.swing.JTextField();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        nombreptxt = new javax.swing.JTextField();
-        tipoProtxt = new javax.swing.JTextField();
-        nacionalidadtxt = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTableProductos = new javax.swing.JTable();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        Stocktxt = new javax.swing.JTextField();
-        BorrarPro = new javax.swing.JButton();
-        ActualizarPro = new javax.swing.JButton();
-        BuscarPro = new javax.swing.JButton();
-        jLabel49 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -213,11 +189,6 @@ public class Ventana extends javax.swing.JFrame {
         jLabel7.setText("  INVENTARIO");
         jLabel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 5, true));
         jLabel7.setOpaque(true);
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
-            }
-        });
         jPanel2.add(jLabel7);
 
         jLabel41.setBackground(new java.awt.Color(204, 204, 204));
@@ -254,44 +225,24 @@ public class Ventana extends javax.swing.JFrame {
         panelturno.setName("panelturno"); // NOI18N
         panelturno.setLayout(null);
 
-        jLabel9.setText("HISTORIA CLINICA :");
-        panelturno.add(jLabel9);
-        jLabel9.setBounds(40, 100, 110, 16);
-
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("RAZA :");
         panelturno.add(jLabel10);
-        jLabel10.setBounds(40, 250, 90, 16);
+        jLabel10.setBounds(40, 230, 90, 16);
 
-        jLabel11.setText("NOMBRE - APELLIDOS");
-        panelturno.add(jLabel11);
-        jLabel11.setBounds(40, 130, 120, 30);
-
-        jLabel12.setText("NOMBRE MASCOTA(ALIAS :)");
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("NOMBRE MASCOTA(ALIAS )");
         panelturno.add(jLabel12);
-        jLabel12.setBounds(320, 140, 150, 30);
+        jLabel12.setBounds(30, 130, 170, 30);
 
-        jLabel13.setText("CEDULA:");
-        panelturno.add(jLabel13);
-        jLabel13.setBounds(40, 70, 90, 16);
-
-        jCheckBox1.setText("DOMESTICO");
-        panelturno.add(jCheckBox1);
-        jCheckBox1.setBounds(30, 300, 99, 25);
-
-        jCheckBox2.setText("SALVAJE");
-        panelturno.add(jCheckBox2);
-        jCheckBox2.setBounds(30, 330, 80, 25);
-
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("TURNO # :");
         panelturno.add(jLabel14);
-        jLabel14.setBounds(30, 430, 60, 16);
-
-        jRadioButton1.setText("EMERGENCIA");
-        panelturno.add(jRadioButton1);
-        jRadioButton1.setBounds(30, 460, 103, 25);
+        jLabel14.setBounds(50, 40, 70, 16);
         panelturno.add(jTextField1);
-        jTextField1.setBounds(90, 430, 70, 22);
+        jTextField1.setBounds(150, 220, 70, 22);
 
+        jButton1.setFont(new java.awt.Font("Garamond", 1, 13)); // NOI18N
         jButton1.setText("CREAR TURNO");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,36 +250,43 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         panelturno.add(jButton1);
-        jButton1.setBounds(260, 440, 110, 25);
+        jButton1.setBounds(50, 440, 130, 25);
 
-        jLabel15.setText("ENFERMEDAD :");
-        panelturno.add(jLabel15);
-        jLabel15.setBounds(320, 300, 90, 16);
-
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("DESCRIPCION :");
         panelturno.add(jLabel16);
-        jLabel16.setBounds(320, 340, 80, 16);
-        panelturno.add(jTextField2);
-        jTextField2.setBounds(420, 300, 90, 22);
+        jLabel16.setBounds(250, 350, 140, 16);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         panelturno.add(jScrollPane1);
-        jScrollPane1.setBounds(410, 340, 166, 150);
-        panelturno.add(jTextField3);
-        jTextField3.setBounds(150, 60, 100, 22);
-        panelturno.add(jTextField4);
-        jTextField4.setBounds(160, 100, 100, 22);
-        panelturno.add(jTextField5);
-        jTextField5.setBounds(160, 140, 100, 22);
+        jScrollPane1.setBounds(430, 350, 166, 150);
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
         panelturno.add(jTextField6);
-        jTextField6.setBounds(330, 180, 160, 22);
+        jTextField6.setBounds(210, 130, 160, 22);
+        panelturno.add(jTextField2);
+        jTextField2.setBounds(140, 40, 70, 22);
+
+        jButton9.setFont(new java.awt.Font("Garamond", 1, 13)); // NOI18N
+        jButton9.setText("VERIFICAR");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        panelturno.add(jButton9);
+        jButton9.setBounds(210, 440, 120, 25);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/48414530_1903087569808413_8354147755102306304_n (1).jpg"))); // NOI18N
         panelturno.add(jLabel8);
-        jLabel8.setBounds(2, 5, 640, 540);
+        jLabel8.setBounds(0, 0, 640, 540);
 
         Contenedor.add(panelturno, "card3");
 
@@ -336,7 +294,7 @@ public class Ventana extends javax.swing.JFrame {
         panelregistro.setLayout(null);
 
         jButton3.setBackground(new java.awt.Color(51, 51, 255));
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
         jButton3.setText("PERSONAL");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -344,10 +302,10 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         panelregistro.add(jButton3);
-        jButton3.setBounds(310, 190, 180, 80);
+        jButton3.setBounds(340, 210, 180, 80);
 
         jButton4.setBackground(new java.awt.Color(51, 51, 255));
-        jButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Garamond", 1, 24)); // NOI18N
         jButton4.setText("CLIENTES ");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -355,17 +313,13 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         panelregistro.add(jButton4);
-        jButton4.setBounds(110, 190, 190, 80);
+        jButton4.setBounds(110, 210, 190, 80);
 
         jLabel24.setBackground(new java.awt.Color(0, 102, 102));
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/49899278_550625465454970_3718882791421640704_n.jpg"))); // NOI18N
         jLabel24.setOpaque(true);
         panelregistro.add(jLabel24);
-        jLabel24.setBounds(5, 0, 640, 550);
-
-        jLabel42.setText("jLabel42");
-        panelregistro.add(jLabel42);
-        jLabel42.setBounds(10, 0, 630, 550);
+        jLabel24.setBounds(0, -10, 640, 550);
 
         Contenedor.add(panelregistro, "card5");
 
@@ -444,13 +398,27 @@ public class Ventana extends javax.swing.JFrame {
         pregistropersonal.add(jTextField23);
         jTextField23.setBounds(150, 150, 120, 22);
 
-        jButton5.setText("REGISTRAR");
+        jButton5.setText("BUSCAR");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         pregistropersonal.add(jButton5);
-        jButton5.setBounds(450, 460, 100, 40);
+        jButton5.setBounds(290, 450, 100, 40);
 
         Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TIPO", "MOVIL", "CONVENCIONAL" }));
         pregistropersonal.add(Tipo);
         Tipo.setBounds(150, 400, 120, 22);
+
+        jButton8.setText("REGISTRAR");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        pregistropersonal.add(jButton8);
+        jButton8.setBounds(160, 450, 100, 40);
 
         jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/50026326_523910904786569_5848442999729553408_n.jpg"))); // NOI18N
         pregistropersonal.add(jLabel40);
@@ -475,19 +443,19 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel37.setText("EMAIL :");
         pregistroclientes.add(jLabel37);
-        jLabel37.setBounds(80, 340, 44, 16);
+        jLabel37.setBounds(90, 340, 44, 16);
 
         jLabel38.setText("CEDULA :");
         pregistroclientes.add(jLabel38);
-        jLabel38.setBounds(80, 50, 60, 16);
+        jLabel38.setBounds(80, 60, 60, 16);
         pregistroclientes.add(clinombre);
-        clinombre.setBounds(150, 130, 120, 30);
+        clinombre.setBounds(160, 130, 120, 30);
         pregistroclientes.add(clidireccion);
         clidireccion.setBounds(160, 190, 120, 30);
         pregistroclientes.add(clitelefono);
         clitelefono.setBounds(160, 250, 120, 30);
         pregistroclientes.add(clicorreo);
-        clicorreo.setBounds(150, 320, 120, 30);
+        clicorreo.setBounds(160, 330, 120, 30);
 
         clicedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -495,20 +463,59 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         pregistroclientes.add(clicedula);
-        clicedula.setBounds(140, 50, 120, 30);
+        clicedula.setBounds(170, 60, 120, 30);
 
-        jButton6.setText("REGISTRAR");
+        jButton6.setFont(new java.awt.Font("Garamond", 1, 13)); // NOI18N
+        jButton6.setText("ELIMINAR");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
         pregistroclientes.add(jButton6);
-        jButton6.setBounds(200, 430, 160, 60);
+        jButton6.setBounds(440, 460, 120, 60);
 
         cclitelefono.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TIPO", "M","C" }));
         pregistroclientes.add(cclitelefono);
         cclitelefono.setBounds(340, 250, 150, 22);
+
+        jButton10.setFont(new java.awt.Font("Garamond", 1, 13)); // NOI18N
+        jButton10.setText("REGISTRAR");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        pregistroclientes.add(jButton10);
+        jButton10.setBounds(20, 460, 107, 60);
+
+        jButton11.setFont(new java.awt.Font("Garamond", 1, 13)); // NOI18N
+        jButton11.setText("BUSCAR");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        pregistroclientes.add(jButton11);
+        jButton11.setBounds(150, 460, 110, 60);
+
+        jButton12.setFont(new java.awt.Font("Garamond", 1, 13)); // NOI18N
+        jButton12.setText("ACTUALIZAR");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        pregistroclientes.add(jButton12);
+        jButton12.setBounds(290, 460, 120, 60);
+
+        cliid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cliidActionPerformed(evt);
+            }
+        });
+        pregistroclientes.add(cliid);
+        cliid.setBounds(400, 70, 120, 30);
 
         jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/48413169_311199442828618_5704288482638168064_n.png"))); // NOI18N
         pregistroclientes.add(jLabel39);
@@ -591,139 +598,8 @@ public class Ventana extends javax.swing.JFrame {
 
         Contenedor.add(panelfactura, "card4");
 
-        panelProductos.setName("panelProductos"); // NOI18N
-        panelProductos.setLayout(null);
-
-        idproductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idtxt(evt);
-            }
-        });
-        panelProductos.add(idproductos);
-        idproductos.setBounds(270, 50, 70, 22);
-
-        jLabel43.setText("Nombre");
-        panelProductos.add(jLabel43);
-        jLabel43.setBounds(120, 100, 45, 16);
-
-        jLabel44.setText("Tipo");
-        panelProductos.add(jLabel44);
-        jLabel44.setBounds(120, 150, 30, 16);
-
-        jLabel45.setText("Nacionalidad");
-        panelProductos.add(jLabel45);
-        jLabel45.setBounds(120, 210, 80, 20);
-
-        jLabel46.setText("Id");
-        panelProductos.add(jLabel46);
-        jLabel46.setBounds(120, 50, 80, 16);
-
-        nombreptxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreptxtActionPerformed(evt);
-            }
-        });
-        panelProductos.add(nombreptxt);
-        nombreptxt.setBounds(270, 90, 310, 30);
-
-        tipoProtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoProtxtActionPerformed(evt);
-            }
-        });
-        panelProductos.add(tipoProtxt);
-        tipoProtxt.setBounds(270, 140, 310, 30);
-
-        nacionalidadtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nacionalidadtxtActionPerformed(evt);
-            }
-        });
-        panelProductos.add(nacionalidadtxt);
-        nacionalidadtxt.setBounds(270, 200, 90, 30);
-
-        jTableProductos.setModel(new TablaProducto());
-        jTableProductos.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jTableProductosAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        jScrollPane3.setViewportView(jTableProductos);
-
-        panelProductos.add(jScrollPane3);
-        jScrollPane3.setBounds(0, 310, 650, 150);
-
-        jButton7.setText("GUARDAR");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        panelProductos.add(jButton7);
-        jButton7.setBounds(400, 500, 89, 25);
-
-        jButton8.setText("MOSTRAR");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        panelProductos.add(jButton8);
-        jButton8.setBounds(510, 500, 100, 25);
-
-        jLabel47.setText("INGRSAR NUEVO PRODUCTO");
-        panelProductos.add(jLabel47);
-        jLabel47.setBounds(400, 10, 190, 70);
-
-        jLabel48.setText("Stock");
-        panelProductos.add(jLabel48);
-        jLabel48.setBounds(120, 260, 31, 16);
-
-        Stocktxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StocktxtActionPerformed(evt);
-            }
-        });
-        panelProductos.add(Stocktxt);
-        Stocktxt.setBounds(270, 260, 60, 22);
-
-        BorrarPro.setText("BORRAR");
-        BorrarPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BorrarProActionPerformed(evt);
-            }
-        });
-        panelProductos.add(BorrarPro);
-        BorrarPro.setBounds(280, 500, 100, 25);
-
-        ActualizarPro.setText("ACTUALIZAR");
-        ActualizarPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActualizarProActionPerformed(evt);
-            }
-        });
-        panelProductos.add(ActualizarPro);
-        ActualizarPro.setBounds(150, 500, 110, 25);
-
-        BuscarPro.setText("BUSCAR");
-        BuscarPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarProActionPerformed(evt);
-            }
-        });
-        panelProductos.add(BuscarPro);
-        BuscarPro.setBounds(30, 500, 100, 25);
-
-        jLabel49.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Documents\\NetBeansProjects\\Proyecto_Veterinaria -\\src\\img\\50286224_798665033800581_1599931478752362496_n.jpg")); // NOI18N
-        jLabel49.setText("jLabel49");
-        panelProductos.add(jLabel49);
-        jLabel49.setBounds(0, -100, 650, 650);
-
-        Contenedor.add(panelProductos, "card8");
+        jLabel42.setText("jLabel42");
+        Contenedor.add(jLabel42, "card8");
 
         jPanel1.add(Contenedor);
         Contenedor.setBounds(110, 0, 650, 550);
@@ -742,9 +618,15 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        new Login().setVisible(false);
+        GestionMascotas gm= new GestionMascotas();
+        ArrayList<Mascota>lista=gm.getListMascota(); //Lista de Mascota
+        
+        for (int i = 0; i <lista.size(); i++) {
+            System.out.println(lista.get(i).getId());
+        
+       // new Login().setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
         Contenedor.setPanelSlider(20, panelfactura, RSPanelsSlider.DIRECT.RIGHT);
@@ -772,15 +654,23 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel41MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        GestionClientes gc=new GestionClientes();
-        GestionTelefonos gt=new GestionTelefonos();
+    //ELIMINAR---------------------------
+// TODO add your handling code here:
+        
+        
+        
+        new GestionClientes().EliminarCliente(clicedula.getText());
+        limpiar();
+        
+        
+        //GestionClientes gc=new GestionClientes();
+        /*GestionTelefonos gt=new GestionTelefonos();
         Telefono tel=new Telefono();
         tel.setId(5);
         tel.setEmp_id(1);
         tel.setNumero(clitelefono.getText());
         tel.setTipo("m");
-        //gt.InsertTelefono(tel);
+        gt.InsertTelefono(tel);*/
         
         /*Cliente cli=new Cliente();
         cli.setId(6);
@@ -792,90 +682,92 @@ public class Ventana extends javax.swing.JFrame {
         gc.InsertCliente(cli);*/
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void idtxt(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idtxt
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idtxt
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void nombreptxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreptxtActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreptxtActionPerformed
+    }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void tipoProtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoProtxtActionPerformed
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tipoProtxtActionPerformed
+    }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void nacionalidadtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nacionalidadtxtActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nacionalidadtxtActionPerformed
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        // INSERTAR ---------------------------------
+         Cliente cliente= new Cliente();
+        
+        
+        cliente.setId(new GestionClientes().getListCliente().size()+1);
+        cliente.setNombre(clinombre.getText());
+        cliente.setCedula(clicedula.getText());
+        cliente.setDireccion(clidireccion.getText());
+        cliente.setTelefono(clitelefono.getText());
+        cliente.setCorreo(clicorreo.getText());
+        new GestionClientes().InsertCliente(cliente);
+        
+        cliid.setText(String.valueOf(cliente.getId()));
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        
+        
+        if(Error(clicedula.getText())){
+        Cliente cliente= new GestionClientes().getBuscarCliente(clicedula.getText());
+        
+        cliid.setText(String.valueOf(cliente.getId()));
+        clinombre.setText(cliente.getNombre());
+        clitelefono.setText(cliente.getTelefono());
+        clidireccion.setText(cliente.getDireccion());
+        clicorreo.setText(cliente.getCorreo());
+        
+        
+       // cliente.setNombre(clinombre.getText());
+      
+        
+//         TODO add your handling code here:
+        }else{
+            JOptionPane.showMessageDialog(null,"Valor no encontrado");
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here
+        //ACTUALIZAR ----------------------------
+        Cliente cliente= new Cliente();
+        
+        
+        cliente.setId(Integer.parseInt(cliid.getText())); //
+        cliente.setNombre(clinombre.getText());
+        cliente.setCedula(clicedula.getText());
+        cliente.setDireccion(clidireccion.getText());
+        cliente.setTelefono(clitelefono.getText());
+        cliente.setCorreo(clicorreo.getText());
+        
+        /*ArrayList<Cliente>lista=new ArrayList<>();
+        lista.add(cliente);
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println(lista.get(i).getCedula());
+        }*/
+        
+        
+        new GestionClientes().ActualizarCliente(cliente);
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     private void clicedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clicedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_clicedulaActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-      Producto pro = new Producto();
-      pro.setPro_id(Integer.parseInt(idproductos.getText()));
-      pro.setNombre(nombreptxt.getText());
-      pro.setTipo(tipoProtxt.getText());
-      pro.setNacionalidad(nacionalidadtxt.getText());
-      pro.setStock(Integer.parseInt(Stocktxt.getText()));
-      
-      GestionProductos gp=new GestionProductos();
-      gp.InsertProductos(pro);
-      
-      idproductos.setText("");
-      nombreptxt.setText("");
-      tipoProtxt.setText("");
-      nacionalidadtxt.setText("");
-      Stocktxt.setText("");
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void StocktxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StocktxtActionPerformed
+    private void cliidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cliidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_StocktxtActionPerformed
-
-    private void jTableProductosAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTableProductosAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTableProductosAncestorAdded
-
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        Contenedor.setPanelSlider(20,panelProductos, RSPanelsSlider.DIRECT.UP);
-    }//GEN-LAST:event_jLabel7MouseClicked
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        jTableProductos.setModel(new TablaProducto(new GestionProductos().getListProducto()));
-        System.out.println(""+new GestionProductos().getListProducto().get(0).getPro_id());
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void BorrarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarProActionPerformed
-      GestionProductos gp =new GestionProductos();
-      gp.EliminarProducto(Integer.parseInt(idproductos.getText()));
-      
-    }//GEN-LAST:event_BorrarProActionPerformed
-
-    private void BuscarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarProActionPerformed
-      GestionProductos gp =new GestionProductos();
-      Producto pro = new GestionProductos().getBuscarPoducto(Integer.parseInt(idproductos.getText()));
-      idproductos.setText(String.valueOf(pro.getPro_id()));
-      nombreptxt.setText(pro.getNombre());
-      tipoProtxt.setText(pro.getTipo());
-      nacionalidadtxt.setText(pro.getNacionalidad());
-      Stocktxt.setText(String.valueOf(pro.getStock()));
-        
-         
-        
-    }//GEN-LAST:event_BuscarProActionPerformed
-
-    private void ActualizarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarProActionPerformed
-      GestionProductos gp =new GestionProductos();
-      Producto pro = new Producto();
-      pro.setPro_id(Integer.parseInt(idproductos.getText()));
-      pro.setNombre(nombreptxt.getText());
-      pro.setTipo(tipoProtxt.getText());
-      pro.setNacionalidad(nacionalidadtxt.getText());
-      pro.setStock(Integer.parseInt(Stocktxt.getText()));
-      gp.ActualizarProducto(pro);
-    }//GEN-LAST:event_ActualizarProActionPerformed
+    }//GEN-LAST:event_cliidActionPerformed
 
     /**
      * @param args the command line arguments
@@ -883,36 +775,30 @@ public class Ventana extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ActualizarPro;
-    private javax.swing.JButton BorrarPro;
-    private javax.swing.JButton BuscarPro;
     private rojerusan.RSPanelsSlider Contenedor;
-    private javax.swing.JTextField Stocktxt;
     private javax.swing.JComboBox<String> Tipo;
     private javax.swing.JComboBox<String> cclitelefono;
     private javax.swing.JTextField clicedula;
     private javax.swing.JTextField clicorreo;
     private javax.swing.JTextField clidireccion;
+    private javax.swing.JTextField cliid;
     private javax.swing.JTextField clinombre;
     private javax.swing.JTextField clitelefono;
-    private javax.swing.JTextField idproductos;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -943,26 +829,15 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTableProductos;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
@@ -980,22 +855,35 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTextField nacionalidadtxt;
-    private javax.swing.JTextField nombreptxt;
-    private javax.swing.JPanel panelProductos;
     private javax.swing.JPanel panelfactura;
     private javax.swing.JPanel panelfondo;
     private javax.swing.JPanel panelregistro;
     private javax.swing.JPanel panelturno;
     private javax.swing.JPanel pregistroclientes;
     private javax.swing.JPanel pregistropersonal;
-    private javax.swing.JTextField tipoProtxt;
     // End of variables declaration//GEN-END:variables
+
+
+public void limpiar(){ // Metodo para limpiar los jtextfield
+
+  cliid.setText("");
+        clinombre.setText("");
+        clitelefono.setText("");
+        clidireccion.setText("");
+        clicorreo.setText("");
+}
+public boolean Error(String cedula){ //Metodo para el error
+    boolean mensaje= false;
+    for (int i = 0; i < new GestionClientes().getListCliente().size(); i++) {
+        if(new GestionClientes().getListCliente().get(i).getCedula().equals (cedula))// Compara con todos los clientes de la lista 
+            mensaje=true;
+        break;// Sale del bucle
+    }
+    return mensaje;
+}
+
 }
