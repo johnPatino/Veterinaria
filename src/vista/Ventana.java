@@ -884,7 +884,80 @@ public class Ventana extends javax.swing.JFrame {
            }
         }
          return trues;
+         private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    //ELIMINAR---------------------------
+// TODO add your handling code here:
+        
+        
+        
+        new GestionClientes().EliminarCliente(clicedula.getText()); // LLama a la gestion y al meotodo EliminarCliente
+        limpiar();
+        
+       
+    }    
+        //actualizar clientes
+       private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here
+        //ACTUALIZAR ----------------------------
+        Cliente cliente= new Cliente();
+        
+        
+        cliente.setId(Integer.parseInt(cliid.getText())); //
+        cliente.setNombre(clinombre.getText());
+        cliente.setCedula(clicedula.getText());
+        cliente.setDireccion(clidireccion.getText());
+        cliente.setTelefono(clitelefono.getText());
+        cliente.setCorreo(clicorreo.getText());
+        
+        /*ArrayList<Cliente>lista=new ArrayList<>();
+        lista.add(cliente);
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println(lista.get(i).getCedula());
+        }*/
+        
+        
+        new GestionClientes().ActualizarCliente(cliente); 
+        
     }
+         private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        
+        //---BUSCAR
+        if(Error(clicedula.getText())){
+        Cliente cliente= new GestionClientes().getBuscarCliente(clicedula.getText());
+        
+        cliid.setText(String.valueOf(cliente.getId()));
+        clinombre.setText(cliente.getNombre());
+        clitelefono.setText(cliente.getTelefono());
+        clidireccion.setText(cliente.getDireccion());
+        clicorreo.setText(cliente.getCorreo());
+        
+        
+       // cliente.setNombre(clinombre.getText());
+      
+        
+//         TODO add your handling code here:
+        }else{
+            JOptionPane.showMessageDialog(null,"Valor no encontrado");
+        }
+    }                       
+     
+          private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        // TODO add your handling code here:
+        // INSERTAR ---------------------------------
+         Cliente cliente= new Cliente();
+        
+        
+        cliente.setId(new GestionClientes().getListCliente().size()+1);// Cunado se inserte el cliente el id se va a sumar mas 1 con el tamano de la lista
+        cliente.setNombre(clinombre.getText());
+        cliente.setCedula(clicedula.getText());
+        cliente.setDireccion(clidireccion.getText());
+        cliente.setTelefono(clitelefono.getText());
+        cliente.setCorreo(clicorreo.getText());
+        new GestionClientes().InsertCliente(cliente);
+        
+        cliid.setText(String.valueOf(cliente.getId()));
+    }                        
+        
     private void ActualizarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarProActionPerformed
       GestionProductos gp =new GestionProductos();
       Producto pro = new Producto();
@@ -923,6 +996,10 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;    
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
