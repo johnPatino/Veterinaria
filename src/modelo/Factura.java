@@ -13,80 +13,50 @@ import java.util.Date;
  * @author Bernardo
  */
 public class Factura {
-   private Date fecha;
-    private Cliente nombre , direccion , correo, telefono ,cedula;
-    private Detalle_Factura detalle;
+  private int fac_id,cliente_id;
+  private double subtotal,total;
+  private String fecha;
 
-    public Factura(Date fecha, Cliente nombre, Cliente direccion, Cliente correo, Cliente telefono, Cliente cedula, Detalle_Factura detalle) {
-        this.fecha = fecha;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.cedula = cedula;
-        this.detalle = detalle;
-    }
-    
-     public Factura() {
-        
-    }
-
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public Cliente getNombre() {
-        return nombre;
+    public int getFac_id() {
+        return fac_id;
     }
 
-    public void setNombre(Cliente nombre) {
-        this.nombre = nombre;
+    public void setFac_id(int fac_id) {
+        this.fac_id = fac_id;
     }
 
-    public Cliente getDireccion() {
-        return direccion;
+    public int getCliente_id() {
+        return cliente_id;
     }
 
-    public void setDireccion(Cliente direccion) {
-        this.direccion = direccion;
+    public void setCliente_id(int cliente_id) {
+        this.cliente_id = cliente_id;
     }
 
-    public Cliente getCorreo() {
-        return correo;
+    public double getSubtotal() {
+        return subtotal;
     }
 
-    public void setCorreo(Cliente correo) {
-        this.correo = correo;
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
 
-    public Cliente getTelefono() {
-        return telefono;
+    public double getTotal() {
+        return total;
     }
 
-    public void setTelefono(Cliente telefono) {
-        this.telefono = telefono;
+    public void setTotal(double total) {
+        this.total = total;
     }
-
-    public Cliente getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(Cliente cedula) {
-        this.cedula = cedula;
-    }
-
-    public Detalle_Factura getDetalle() {
-        return detalle;
-    }
-
-    public void setDetalle(Detalle_Factura detalle) {
-        this.detalle = detalle;
-    }
-    
-    
+  
+  
     
 }

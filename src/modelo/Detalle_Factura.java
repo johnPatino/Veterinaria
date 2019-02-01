@@ -15,23 +15,9 @@ import java.util.Date;
 public class Detalle_Factura {
     
     
-    private int cantidad;
-    private String descirpcion,firma_cliente;
-    private double valor_unitario ,valor_total, valor_a_pagar,valor_consulta;
-
-    public Detalle_Factura(int cantidad, String descirpcion, String firma_cliente, double valor_unitario, double valor_total, double valor_a_pagar, double valor_consulta) {
-        this.cantidad = cantidad;
-        this.descirpcion = descirpcion;
-        this.firma_cliente = firma_cliente;
-        this.valor_unitario = valor_unitario;
-        this.valor_total = valor_total;
-        this.valor_a_pagar = valor_a_pagar;
-        this.valor_consulta = valor_consulta;
-    }
+    private int pro_id ,det_id,fac_id,kar_id,cantidad;
     
-    public Detalle_Factura() {
-        
-    }
+    private double valor_unitario ,valor_total;
 
     public int getCantidad() {
         return cantidad;
@@ -41,20 +27,36 @@ public class Detalle_Factura {
         this.cantidad = cantidad;
     }
 
-    public String getDescirpcion() {
-        return descirpcion;
+    public int getPro_id() {
+        return pro_id;
     }
 
-    public void setDescirpcion(String descirpcion) {
-        this.descirpcion = descirpcion;
+    public void setPro_id(int pro_id) {
+        this.pro_id = pro_id;
     }
 
-    public String getFirma_cliente() {
-        return firma_cliente;
+    public int getDet_id() {
+        return det_id;
     }
 
-    public void setFirma_cliente(String firma_cliente) {
-        this.firma_cliente = firma_cliente;
+    public void setDet_id(int det_id) {
+        this.det_id = det_id;
+    }
+
+    public int getFac_id() {
+        return fac_id;
+    }
+
+    public void setFac_id(int fac_id) {
+        this.fac_id = fac_id;
+    }
+
+    public int getKar_id() {
+        return kar_id;
+    }
+
+    public void setKar_id(int kar_id) {
+        this.kar_id = kar_id;
     }
 
     public double getValor_unitario() {
@@ -73,22 +75,5 @@ public class Detalle_Factura {
         this.valor_total = valor_total;
     }
 
-    public double getValor_a_pagar() {
-        return valor_a_pagar;
-    }
-
-    public void setValor_a_pagar(double valor_a_pagar) {
-        this.valor_a_pagar = valor_a_pagar;
-    }
-
-    public double getValor_consulta() {
-        return valor_consulta;
-    }
-
-    public void setValor_consulta(double valor_consulta) {
-        this.valor_consulta = valor_consulta;
-    }
-   
-  
     
 }
